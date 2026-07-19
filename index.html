@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ur" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>IJAZ AI — Chat & Image Assistant</title>
+<meta name="description" content="IJAZ AI - Ask anything about the world and generate AI images instantly. Built by M Ijaz, GHS 124/NB.">
+<meta name="theme-color" content="#0B1220">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="IJAZ AI">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="app">
+
+  <!-- Top bar -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">
+        <svg viewBox="0 0 48 48" width="26" height="26" aria-hidden="true">
+          <defs>
+            <linearGradient id="gA" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#5EEAD4"/>
+              <stop offset="1" stop-color="#7C6CF0"/>
+            </linearGradient>
+          </defs>
+          <circle cx="24" cy="24" r="21" fill="none" stroke="url(#gA)" stroke-width="3"/>
+          <circle cx="24" cy="24" r="6" fill="url(#gA)"/>
+          <circle cx="24" cy="6" r="3" fill="url(#gA)"/>
+          <circle cx="42" cy="24" r="3" fill="url(#gA)"/>
+          <circle cx="24" cy="42" r="3" fill="url(#gA)"/>
+          <circle cx="6" cy="24" r="3" fill="url(#gA)"/>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <span class="brand-title">IJAZ <b>AI</b></span>
+        <span class="brand-sub">World info &amp; image creator</span>
+      </div>
+    </div>
+    <div class="topbar-actions">
+      <button id="newChatBtn" class="icon-btn" title="New chat" aria-label="New chat">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg>
+      </button>
+      <button id="installBtn" class="icon-btn install-btn hidden" title="Install app" aria-label="Install app">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mode strip -->
+  <div class="mode-strip" role="tablist" aria-label="Mode">
+    <button class="mode-chip active" data-mode="chat" role="tab" aria-selected="true">
+      <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M4 4h16v12H5.17L4 17.17V4m0-2a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H4z"/></svg>
+      Chat / Info
+    </button>
+    <button class="mode-chip" data-mode="image" role="tab" aria-selected="false">
+      <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M21 19V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2M8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+      Image Studio
+    </button>
+  </div>
+
+  <!-- CHAT PANEL -->
+  <main id="chatPanel" class="panel active">
+    <div id="chatLog" class="chat-log">
+      <div class="welcome-card">
+        <h1>Assalam-o-Alaikum, Ijaz Sir! 👋</h1>
+        <p>Main <b>IJAZ AI</b> hoon — duniya bhar ki maloomat, tareekh, science, current affairs, aur education se related har sawal ka jawab de sakta hoon. Neeche type karein ya suggestion tap karein.</p>
+        <div class="suggestions">
+          <button class="sugg-chip" data-q="Pakistan ka education system kaisa hai?">🏫 Pakistan education system</button>
+          <button class="sugg-chip" data-q="Duniya ke 5 sab se lambe dariya kon se hain?">🌍 World's longest rivers</button>
+          <button class="sugg-chip" data-q="Photosynthesis kya hai, aasan lafzon mein samjhao">🔬 Explain photosynthesis</button>
+          <button class="sugg-chip" data-q="Class 8 English grammar ke important tenses batao">📘 Class 8 grammar tips</button>
+        </div>
+      </div>
+    </div>
+    <div id="typingRow" class="typing-row hidden">
+      <div class="avatar-ai">AI</div>
+      <div class="typing-bubble"><span></span><span></span><span></span></div>
+    </div>
+  </main>
+
+  <!-- IMAGE PANEL -->
+  <section id="imagePanel" class="panel">
+    <div class="image-intro">
+      <h2>🎨 Image Studio</h2>
+      <p>Koi bhi tasveer likh kar batayein — IJAZ AI aik saath <b>kam az kam 3 alag variations</b> bana kar dikhayega.</p>
+    </div>
+    <div id="imageGallery" class="image-gallery" aria-live="polite"></div>
+    <div id="imageEmpty" class="image-empty">
+      <svg viewBox="0 0 24 24" width="46" height="46"><path fill="currentColor" opacity="0.5" d="M21 19V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2M8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+      <p>Abhi tak koi image nahi banayi gayi. Neeche prompt likh kar "Generate" dabayein.</p>
+    </div>
+  </section>
+
+  <!-- COMPOSER -->
+  <footer class="composer">
+    <div class="composer-inner">
+      <button id="micModeBtn" class="composer-mode-btn" title="Switch mode" aria-label="Switch mode">
+        <svg id="modeIcon" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M4 4h16v12H5.17L4 17.17V4m0-2a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H4z"/></svg>
+      </button>
+      <textarea id="promptInput" rows="1" placeholder="Kuch bhi puchein... ya image ka description likhein"></textarea>
+      <button id="sendBtn" class="send-btn" aria-label="Send">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg>
+      </button>
+    </div>
+    <div class="composer-hint">IJAZ AI galtiyan kar sakta hai. Zaroori maloomat verify kar lein. • <span id="hintMode">Chat mode</span></div>
+  </footer>
+
+</div>
+
+<div id="toast" class="toast hidden"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
