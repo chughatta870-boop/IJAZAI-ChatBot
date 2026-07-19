@@ -1,0 +1,61 @@
+{
+  "id": "/ijaz-ai/",
+  "name": "IJAZ AI - Chat & Image Assistant",
+  "short_name": "IJAZ AI",
+  "description": "IJAZ AI - Ask anything about the world and generate AI images instantly. Built by M Ijaz, GHS 124/NB.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
+  "orientation": "portrait-primary",
+  "background_color": "#0B1220",
+  "theme_color": "#0B1220",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["education", "productivity", "utilities"],
+  "icons": [
+    { "src": "icon-72.png", "sizes": "72x72", "type": "image/png", "purpose": "any" },
+    { "src": "icon-96.png", "sizes": "96x96", "type": "image/png", "purpose": "any" },
+    { "src": "icon-128.png", "sizes": "128x128", "type": "image/png", "purpose": "any" },
+    { "src": "icon-144.png", "sizes": "144x144", "type": "image/png", "purpose": "any" },
+    { "src": "icon-152.png", "sizes": "152x152", "type": "image/png", "purpose": "any" },
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-192-maskable.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "icon-384.png", "sizes": "384x384", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "screenshots": [
+    {
+      "src": "screenshot-1.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "IJAZ AI chat screen"
+    },
+    {
+      "src": "screenshot-2.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "IJAZ AI image studio"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "New Chat",
+      "short_name": "Chat",
+      "description": "Start a new IJAZ AI chat",
+      "url": "./index.html?mode=chat",
+      "icons": [{ "src": "icon-96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Image Studio",
+      "short_name": "Images",
+      "description": "Generate AI images",
+      "url": "./index.html?mode=image",
+      "icons": [{ "src": "icon-96.png", "sizes": "96x96" }]
+    }
+  ],
+  "prefer_related_applications": false
+}
